@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MicroFrontendService } from '@liantis-ds/micro-frontend-tools';
 import { ScreenOrientation } from '@capacitor/screen-orientation';
+import { Device } from '@capacitor/device';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'portal-client1-root',
@@ -21,7 +23,24 @@ export class AppComponent implements OnInit, OnDestroy {
       'screenOrientationChange',
       this.handleOrientationChange
     );
+
+    this.logDeviceInfo();
   }
+
+  logDeviceInfo = async () => {
+    const info = await Device.getInfo();
+
+    console.log(info);
+  };
+
+  shareInfo = async () => {
+    await Share.share({
+      title: 'See cool stuff',
+      text: 'Really awesome thing you need to see right meow',
+      url: 'http://ionicframework.com/',
+      dialogTitle: 'Share with buddies',
+    });
+  };
 
   handleOrientationChange() {
     ScreenOrientation.orientation()
