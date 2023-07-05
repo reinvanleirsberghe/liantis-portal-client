@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  open = false;
+
   constructor() {}
+
+  toggleDrawer() {
+    this.open = !this.open;
+  }
+
+  onModalClosed(event: Event) {
+    this.open = false;
+  }
 }

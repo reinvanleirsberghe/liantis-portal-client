@@ -1,1 +1,9 @@
-<p>client1: home</p>
+<button (click)="toggleDrawer()">Client 1: open drawer</button>
+
+<lds-modal
+  [open]="open"
+  [modalTitle]="'Title'"
+  [drawer]="true"
+  [autoClose]="true"
+  (modalClosed)="onModalClosed($event)"
+></lds-modal>
